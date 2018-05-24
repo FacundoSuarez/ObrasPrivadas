@@ -1,0 +1,23 @@
+{
+    "obrasPrivadas4App": {
+        "tipoPlano" : {
+            "home": {
+                "title": "Tipo Plano",
+                "createLabel": "Crear nuevo Tipo Plano",
+                "createOrEditLabel": "Crear o editar Tipo Plano"
+            },
+            "created": "Un nuevo Tipo Plano ha sido creado con el identificador {{ param }}",
+            "updated": "Un Tipo Plano ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Tipo Plano ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Tipo Plano {{ id }}?"
+            },
+            "detail": {
+                "title": "Tipo Plano"
+            },
+            "descripcion": "Descripcion",
+            "planoDetalles": "Plano Detalles",
+            "oficina": "Oficina"
+        }
+    }
+}

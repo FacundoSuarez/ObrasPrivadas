@@ -1,0 +1,24 @@
+{
+    "obrasPrivadas4App": {
+        "planoDetalle" : {
+            "home": {
+                "title": "Plano Detalles",
+                "createLabel": "Crear nuevo Plano Detalle",
+                "createOrEditLabel": "Crear o editar Plano Detalle"
+            },
+            "created": "Un nuevo Plano Detalle ha sido creado con el identificador {{ param }}",
+            "updated": "Un Plano Detalle ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Plano Detalle ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Plano Detalle {{ id }}?"
+            },
+            "detail": {
+                "title": "Plano Detalle"
+            },
+            "estado": "Estado",
+            "tramites": "Tramites",
+            "plano": "Plano",
+            "tipoPlano": "Tipo Plano"
+        }
+    }
+}

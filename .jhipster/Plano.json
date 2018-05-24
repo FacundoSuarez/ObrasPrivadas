@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "planoDetalles",
+            "otherEntityName": "planoDetalle",
+            "otherEntityRelationshipName": "plano"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "profesional",
+            "otherEntityName": "profesional",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fecha",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "cuitResponsable",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "responsable",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nomeclatura",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171205112242",
+    "entityTableName": "plano",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

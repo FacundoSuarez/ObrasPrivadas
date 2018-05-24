@@ -1,0 +1,65 @@
+<div>
+    <h2 data-translate="Estado de planos">Tramites</h2>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-8 no-padding-left">
+                <h4> Si usted desea inicar un nuevo tramite, debe dirigirse a la pestaña "Iniciar tramite".</h4>
+            </div>
+        </div>
+    </div>
+    <br>
+    <input type="text" class="form-control" ng-model="searchAll" name="searchAll" placeholder="Buscar">
+    <br>
+    
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Propietario</th>
+                    <th><span data-translate="Tipo de plano">Tipo de plano</span></th>
+                    <th>Nomeclatura</th>
+                    <th><span>Estado</span></th>                    
+                    <th><span data-translate="Fecha Inicio">Fecha inicio</span></th>
+                    <th><span data-translate="Fecha Revisión">Fecha Fin</span></th>
+                    <th><span data-translate="obrasPrivadas4App.tramite.observaciones">Observaciones</span></th>
+                    <th><span data-translate="obrasPrivadas4App.tramite.operador">Operador</span></th>
+                    <th><span>Archivo</span></th>
+                    
+                    
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="tramite in vm.tramites | filter:searchAll track by tramite.id">
+                    <td>{{tramite.id}}</td>
+                    <td>{{tramite.planoDetalle.plano.responsable}}</td>
+                    <td>{{tramite.planoDetalle.tipoPlano.descripcion}}</td>
+                    <td>{{tramite.planoDetalle.plano.nomeclatura}}</td>
+                    <td>{{tramite.planoDetalle.estado}}</td>   
+                    <td>{{tramite.fecha | date:'dd/MM/yyyy HH:mm'}}</td>
+                    <td>{{tramite.fechaFin | date:'dd/MM/yyyy HH:mm'}}</td>
+                    <td>{{tramite.observaciones}}</td>
+                    <td>{{tramite.operador.usuario.login}}</td>
+                    <td class="text-right">
+                        
+                        
+
+                        <div class="btn-group flex-btn-group-container">
+                            <a ng-click="vm.openFile(tramite.archivos[0].archivoContentType, tramite.archivos[0].archivo)">
+                            <button type="button" class="btn btn-info">Abrir <span class="glyphicon glyphicon-file"></span></button>
+                            </a>
+                            <button type="submit"
+                                    ui-sref="tramite.edit({id:tramite.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                           
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

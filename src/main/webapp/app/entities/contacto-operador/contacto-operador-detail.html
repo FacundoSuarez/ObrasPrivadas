@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="obrasPrivadas4App.contactoOperador.detail.title">Contacto Operador</span> {{vm.contactoOperador.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="obrasPrivadas4App.contactoOperador.descripcion">Descripcion</span></dt>
+        <dd>
+            <span>{{vm.contactoOperador.descripcion}}</span>
+        </dd>
+        <dt><span data-translate="obrasPrivadas4App.contactoOperador.tipoContacto">Tipo Contacto</span></dt>
+        <dd>
+            <a ui-sref="tipo-contacto-detail({id:vm.contactoOperador.tipoContacto.id})">{{vm.contactoOperador.tipoContacto.id}}</a>
+        </dd>
+        <dt><span data-translate="obrasPrivadas4App.contactoOperador.operador">Operador</span></dt>
+        <dd>
+            <a ui-sref="operador-detail({id:vm.contactoOperador.operador.id})">{{vm.contactoOperador.operador.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="contacto-operador-detail.edit({id:vm.contactoOperador.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

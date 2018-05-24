@@ -1,0 +1,23 @@
+{
+    "obrasPrivadas4App": {
+        "contactoProfesional" : {
+            "home": {
+                "title": "Contacto Profesional",
+                "createLabel": "Crear nuevo Contacto Profesional",
+                "createOrEditLabel": "Crear o editar Contacto Profesional"
+            },
+            "created": "Un nuevo Contacto Profesional ha sido creado con el identificador {{ param }}",
+            "updated": "Un Contacto Profesional ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Contacto Profesional ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Contacto Profesional {{ id }}?"
+            },
+            "detail": {
+                "title": "Contacto Profesional"
+            },
+            "descripcion": "Descripcion",
+            "tipoContacto": "Tipo Contacto",
+            "profesional": "Profesional"
+        }
+    }
+}

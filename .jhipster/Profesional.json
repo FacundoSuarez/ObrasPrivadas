@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "usuario",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "profesional"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "planos",
+            "otherEntityName": "plano",
+            "otherEntityRelationshipName": "profesional"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contactos",
+            "otherEntityName": "contactoProfesional",
+            "otherEntityRelationshipName": "profesional"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "profesion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "matricula",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171205112246",
+    "entityTableName": "profesional",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

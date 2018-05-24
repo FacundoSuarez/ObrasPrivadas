@@ -1,0 +1,40 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "usuario",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "operador"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "oficina",
+            "otherEntityName": "oficina",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "operador"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contactos",
+            "otherEntityName": "contactoOperador",
+            "otherEntityRelationshipName": "operador"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tramites",
+            "otherEntityName": "tramite",
+            "otherEntityRelationshipName": "operador"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20171205112250",
+    "entityTableName": "operador",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

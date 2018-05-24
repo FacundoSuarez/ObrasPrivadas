@@ -1,0 +1,79 @@
+
+entity Plano {
+	fecha ZonedDateTime,
+	cuitResponsable Long,
+    responsable String,
+    nomeclatura String
+}
+
+entity PlanoDetalle{
+    estado EstadoPlano
+}
+
+entity Tramite{
+	fecha ZonedDateTime,
+    fechaFin ZonedDateTime,
+	observaciones String
+}
+
+entity Archivo{
+	archivo AnyBlob
+}
+
+entity Profesional {
+	profesion String,
+    matricula String
+}
+
+entity ContactoProfesional{
+	descripcion String
+}
+
+entity ContactoOperador{
+	descripcion String
+}
+
+entity TipoContacto{
+	descripcion String
+}
+
+entity Operador{
+	
+}
+
+entity Oficina{
+	profesional String,
+    correcciones String
+    
+}
+
+entity TipoPlano{
+	descripcion String
+}
+
+enum EstadoPlano {
+    ENTREGADO, REVISION, APROBADO
+}
+
+relationship OneToMany {
+	Profesional{planos} to Plano{profesional},
+    Plano{planoDetalles} to PlanoDetalle{plano},
+    PlanoDetalle{tramites} to Tramite{planoDetalle},
+    TipoPlano{planoDetalles} to PlanoDetalle{tipoPlano},
+    TipoContacto{contactoOperadores} to ContactoOperador{tipoContacto},
+    TipoContacto{contactoProfesionales} to ContactoProfesional{tipoContacto},
+    Profesional{contactos} to ContactoProfesional{profesional},
+    Operador{contactos} to ContactoOperador{operador},
+    Operador{tramites} to Tramite{operador},
+    Tramite{archivos} to Archivo{tramite}
+}
+
+relationship OneToOne{
+	Profesional{usuario} to User,
+    Operador{usuario} to User,
+    Operador{oficina} to Oficina{operador},
+    Oficina{tipoPlano} to TipoPlano{oficina}
+}
+
+
+service all with serviceImpl

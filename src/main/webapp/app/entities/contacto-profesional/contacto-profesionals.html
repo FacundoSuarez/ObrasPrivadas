@@ -1,0 +1,61 @@
+<div>
+    <h2 data-translate="obrasPrivadas4App.contactoProfesional.home.title">Contacto Profesionals</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="contacto-profesional.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="Crear contacto profesional">
+                        Create new Contacto Profesional
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <input type="text" class="form-control" ng-model="searchAll" name="searchAll" placeholder="Buscar">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <!--<th><span data-translate="global.field.id">ID</span></th>-->
+                    <th><span data-translate="Profesional">Descripcion</span></th>
+                    <th><span data-translate="obrasPrivadas4App.contactoProfesional.tipoContacto">Tipo Contacto</span></th>
+                    <th><span data-translate="Descripción">Profesional</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="contactoProfesional in vm.contactoProfesionals | filter:searchAll track by contactoProfesional.id">
+                    <!--<td><a ui-sref="contacto-profesional-detail({id:contactoProfesional.id})">{{contactoProfesional.id}}</a></td>-->
+                    <td>{{contactoProfesional.profesional.usuario.login}}</td>
+                    <td>{{contactoProfesional.tipoContacto.descripcion}}</td>
+                    <td>{{contactoProfesional.descripcion}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="contacto-profesional-detail({id:contactoProfesional.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="contacto-profesional.edit({id:contactoProfesional.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="contacto-profesional.delete({id:contactoProfesional.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

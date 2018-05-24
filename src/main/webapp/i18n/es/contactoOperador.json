@@ -1,0 +1,23 @@
+{
+    "obrasPrivadas4App": {
+        "contactoOperador" : {
+            "home": {
+                "title": "Contacto Operador",
+                "createLabel": "Crear nuevo Contacto Operador",
+                "createOrEditLabel": "Crear o editar Contacto Operador"
+            },
+            "created": "Un nuevo Contacto Operador ha sido creado con el identificador {{ param }}",
+            "updated": "Un Contacto Operador ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Contacto Operador ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Contacto Operador {{ id }}?"
+            },
+            "detail": {
+                "title": "Contacto Operador"
+            },
+            "descripcion": "Descripcion",
+            "tipoContacto": "Tipo Contacto",
+            "operador": "Operador"
+        }
+    }
+}

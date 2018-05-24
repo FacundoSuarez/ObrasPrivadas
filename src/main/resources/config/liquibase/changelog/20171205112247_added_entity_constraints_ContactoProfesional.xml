@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ContactoProfesional.
+    -->
+    <changeSet id="20171205112247-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="tipo_contacto_id"
+                                 baseTableName="contacto_profesional"
+                                 constraintName="fk_contacto_profesional_tipo_contacto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_contacto"/>
+
+        <addForeignKeyConstraint baseColumnNames="profesional_id"
+                                 baseTableName="contacto_profesional"
+                                 constraintName="fk_contacto_profesional_profesional_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profesional"/>
+
+    </changeSet>
+</databaseChangeLog>

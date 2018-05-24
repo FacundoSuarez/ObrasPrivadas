@@ -1,0 +1,25 @@
+{
+    "obrasPrivadas4App": {
+        "profesional" : {
+            "home": {
+                "title": "Profesional",
+                "createLabel": "Crear nuevo Profesional",
+                "createOrEditLabel": "Crear o editar Profesional"
+            },
+            "created": "Un nuevo Profesional ha sido creado con el identificador {{ param }}",
+            "updated": "Un Profesional ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Profesional ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Profesional {{ id }}?"
+            },
+            "detail": {
+                "title": "Profesional"
+            },
+            "profesion": "Profesion",
+            "matricula": "Matricula",
+            "usuario": "Usuario",
+            "planos": "Planos",
+            "contactos": "Contactos"
+        }
+    }
+}

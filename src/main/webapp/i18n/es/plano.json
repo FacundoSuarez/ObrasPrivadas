@@ -1,0 +1,28 @@
+{
+    "obrasPrivadas4App": {
+        "plano" : {
+            "home": {
+                "title": "Planos",
+                "createLabel": "Crear nuevo Plano",
+                "createOrEditLabel": "Crear o editar Plano"
+            },
+            "created": "Un nuevo Plano ha sido creado con el identificador {{ param }}",
+            "updated": "Un Plano ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Plano ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Plano {{ id }}?"
+            },
+            "detail": {
+                "title": "Plano"
+            },
+            "fecha": "Fecha",
+            "cuitResponsable": "CUIT Propietario",
+            "responsable": "Propietario",
+            "planoDetalles": "Plano Detalles",
+            "observaciones": "Observaciones",
+            "archivo": "Archivo",
+            "tipoPlano": "Tipo de Plano",
+            "profesional": "Profesional"
+        }
+    }
+}

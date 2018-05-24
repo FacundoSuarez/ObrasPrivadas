@@ -1,0 +1,61 @@
+<div>
+    <h2 data-translate="obrasPrivadas4App.planoDetalle.home.title">Plano Detalles</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+            </div>
+        </div>
+    </div>
+    <input type="text" class="form-control" ng-model="searchAll" name="searchAll" placeholder="Buscar">
+    <br/>
+    <div class="table-responsive"> 
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    
+                    <th><span>Profesional</span></th>
+                    <th><span data-translate="Responsable">Plano</span></th>
+                    <th><span data-translate="obrasPrivadas4App.planoDetalle.estado">Estado</span></th>
+                    <th><span>Fecha</span></th>
+                    <th><span data-translate="obrasPrivadas4App.planoDetalle.tipoPlano">Tipo Plano</span></th>
+                    <th><span>Archivo</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="planoDetalle in vm.planoDetalles | filter:searchAll track by planoDetalle.id " >
+                    <td>{{planoDetalle.plano.profesional.usuario.login}}</td>
+                    <td>{{planoDetalle.plano.responsable}}</td>
+                    <td data-translate="{{'obrasPrivadas4App.EstadoPlano.' + planoDetalle.estado}}">{{planoDetalle.estado}}</td>
+                    <td>{{planoDetalle.plano.fecha | date:'dd/MM/yyyy HH:mm'}}</td>
+                    <td>{{planoDetalle.tipoPlano.descripcion}}</td>
+                    <td>  <a ng-if="planoDetalle.plano.tramite.archivo.archivo" ng-click="vm.openFile(archivo.archivoContentType, planoDetalle.tramite.archivo.archivo)" data-translate="Abrir"></a>  </td>
+                    
+                    
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="plano-detalle-detail({id:planoDetalle.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="plano-detalle.edit({id:planoDetalle.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

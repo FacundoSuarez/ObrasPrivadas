@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "tipoPlano",
+            "otherEntityName": "tipoPlano",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "oficina"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "operador",
+            "otherEntityName": "operador",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "oficina"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "profesional",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "correcciones",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171205112251",
+    "entityTableName": "oficina",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

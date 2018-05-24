@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "planoDetalles",
+            "otherEntityName": "planoDetalle",
+            "otherEntityRelationshipName": "tipoPlano"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "oficina",
+            "otherEntityName": "oficina",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "tipoPlano"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171205112252",
+    "entityTableName": "tipo_plano",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

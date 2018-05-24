@@ -1,0 +1,29 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contactoOperadores",
+            "otherEntityName": "contactoOperador",
+            "otherEntityRelationshipName": "tipoContacto"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contactoProfesionales",
+            "otherEntityName": "contactoProfesional",
+            "otherEntityRelationshipName": "tipoContacto"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171205112249",
+    "entityTableName": "tipo_contacto",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

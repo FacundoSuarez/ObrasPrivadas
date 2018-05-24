@@ -1,0 +1,32 @@
+
+<div>
+    <h2><span data-translate="obrasPrivadas4App.plano.detail.title">Plano</span> {{vm.plano.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="obrasPrivadas4App.plano.fecha">Fecha</span></dt>
+        <dd>
+            <span>{{vm.plano.fecha | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="obrasPrivadas4App.plano.cuitResponsable">Cuit Responsable</span></dt>
+        <dd>
+            <span>{{vm.plano.cuitResponsable}}</span>
+        </dd>
+        <dt><span data-translate="obrasPrivadas4App.plano.responsable">Responsable</span></dt>
+        <dd>
+            <span>{{vm.plano.responsable}}</span>
+        </dd>
+        
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="plano-detail.edit({id:vm.plano.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

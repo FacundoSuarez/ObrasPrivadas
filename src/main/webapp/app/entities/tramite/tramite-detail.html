@@ -1,0 +1,33 @@
+
+<div>
+    <h2><span data-translate="obrasPrivadas4App.tramite.detail.title">Tramite</span> {{vm.tramite.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="obrasPrivadas4App.tramite.fecha">Fecha</span></dt>
+        <dd>
+            <span>{{vm.tramite.fecha | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="obrasPrivadas4App.tramite.fechaFin">Fecha Fin</span></dt>
+        <dd>
+            <span>{{vm.tramite.fechaFin | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="obrasPrivadas4App.tramite.observaciones">Observaciones</span></dt>
+        <dd>
+            <span>{{vm.tramite.observaciones}}</span>
+        </dd>
+        <dt><span data-translate="obrasPrivadas4App.tramite.operador">Operador</span></dt>
+        <dd>
+            {{vm.tramite.operador.id}}
+        </dd>
+        
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    
+</div>

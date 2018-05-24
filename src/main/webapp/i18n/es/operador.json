@@ -1,0 +1,24 @@
+{
+    "obrasPrivadas4App": {
+        "operador" : {
+            "home": {
+                "title": "Operador",
+                "createLabel": "Crear nuevo Operador",
+                "createOrEditLabel": "Crear o editar Operador"
+            },
+            "created": "Un nuevo Operador ha sido creado con el identificador {{ param }}",
+            "updated": "Un Operador ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Operador ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Operador {{ id }}?"
+            },
+            "detail": {
+                "title": "Operador"
+            },
+            "usuario": "Usuario",
+            "oficina": "Oficina",
+            "contactos": "Contactos",
+            "tramites": "Tramites"
+        }
+    }
+}

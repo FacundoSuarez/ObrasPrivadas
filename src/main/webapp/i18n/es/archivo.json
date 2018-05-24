@@ -1,0 +1,22 @@
+{
+    "obrasPrivadas4App": {
+        "archivo" : {
+            "home": {
+                "title": "Archivos",
+                "createLabel": "Crear nuevo Archivo",
+                "createOrEditLabel": "Crear o editar Archivo"
+            },
+            "created": "Un nuevo Archivo ha sido creado con el identificador {{ param }}",
+            "updated": "Un Archivo ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Archivo ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Archivo {{ id }}?"
+            },
+            "detail": {
+                "title": "Archivo"
+            },
+            "archivo": "Archivo",
+            "tramite": "Tramite"
+        }
+    }
+}

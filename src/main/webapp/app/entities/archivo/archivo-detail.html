@@ -1,0 +1,37 @@
+
+<div>
+    <h2><span data-translate="obrasPrivadas4App.archivo.detail.title">Archivo</span> {{vm.archivo.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="Estado">Estado</span></dt>
+        <dd>{{vm.archivo.tramite.planoDetalle.estado}}
+        </dd>
+        <dt><span data-translate="Tipo Plano">Tipo Plano</span></dt>
+        <dd>
+            {{vm.archivo.tramite.planoDetalle.tipoPlano.descripcion}}
+        </dd>
+        <dt><span data-translate="obrasPrivadas4App.archivo.archivo">Archivo</span></dt>
+        <dd>
+            <div class="align-middle" ng-if="vm.archivo.archivo">
+                <a ng-click="vm.openFile(vm.archivo.archivoContentType, vm.archivo.archivo)">
+                <button type="button" class="btn btn-info">Abrir <span class="align-bottom glyphicon glyphicon-file"></span></button></a>
+            </div>
+        </dd>
+        <dt>Comentario</dt>
+        <dd>
+            {{vm.archivo.tramite.observaciones}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="archivo-detail.edit({id:vm.archivo.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

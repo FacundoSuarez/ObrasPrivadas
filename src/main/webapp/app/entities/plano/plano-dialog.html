@@ -1,0 +1,227 @@
+ 
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+<style>
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
+</style>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+                aria-hidden="true" ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPlanoLabel"
+            data-translate="obrasPrivadas4App.plano.home.createOrEditLabel">Create
+            or edit a Plano</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.plano.id">
+            <label for="id" data-translate="global.field.id">ID</label> <input
+                type="text" class="form-control" id="id" name="id"
+                ng-model="vm.plano.id" readonly />
+        </div>
+        <div class="col-xs-3 no-padding-left">
+            <label class="control-label"
+                   data-translate="obrasPrivadas4App.plano.fecha" for="field_fecha">Fecha</label>
+            <div class="input-group">
+                <input id="field_fecha" type="text" class="form-control"
+                       name="fecha" datetime-picker="{{dateformat}}"
+                       ng-model="vm.plano.fecha" readonly/>
+                <span class="input-group-btn">
+                </span>
+            </div>
+        </div>
+        <div class="col-xs-3 no-padding-left">
+            <label class="control-label"
+                   data-translate="obrasPrivadas4App.plano.responsable"
+                   for="field_responsable">Responsable</label> 
+            
+            <input type="text" class="form-control" name="responsable" id="field_responsable" 
+                   ng-model="vm.plano.responsable" required ng-minlength=1 ng-maxlength=50 />
+            <div ng-show="editForm.responsable.$invalid" >
+                <p class="help-block"
+                   ng-show="editForm.responsable.$error.required" data-translate="Este campo es obligatorio.">
+                </p>
+            </div>
+        </div>
+
+        
+        <div class="col-xs-3 no-padding-left">
+            <label class="control-label"
+                   data-translate="obrasPrivadas4App.plano.cuitResponsable"
+                   for="field_cuitResponsable">CUIL Responsable</label> 
+            <input
+                type="number" class="form-control" name="cuitResponsable"
+                placeholder="Ingrese solo números" ng-model="vm.plano.cuitResponsable" required ng-minlength=1 ng-maxlength=50 
+                id="field_cuitResponsable" ng-model="vm.plano.cuitResponsable" onkeypress='return validaNumericos(event)'/>
+            <div ng-show="editForm.cuitResponsable.$invalid" >
+                <p class="help-block"
+                   ng-show="editForm.cuitResponsable.$error.required" data-translate="Este campo es obligatorio.">
+                </p>    
+            </div>
+        </div>
+        <div class="col-xs-3 no-padding-left">
+            <label class="control-label" data-translate="Nomeclatura Catastral" for="field_nomeclatura">Nomeclatura</label>
+            <input type="text" class="form-control" name="nomeclatura" id="field_nomeclatura"
+                   ng-model="vm.plano.nomeclatura" required ng-minlength=1 ng-maxlength=50 />
+            <div ng-show="editForm.nomeclatura.$invalid" >
+                <p class="help-block"
+                   ng-show="editForm.nomeclatura.$error.required" data-translate="Este campo es obligatorio.">
+                </p>
+            </div>
+        </div>
+
+
+        <!--                                       PROFESIONAL        
+                           <div class="col-xs-3 no-padding-left">
+                               <label data-translate="obrasPrivadas4App.plano.profesional" for="field_profesional">Profesional</label>
+                               <select class="form-control" id="field_profesional" name="profesional" ng-model="vm.plano.profesional" ng-options="profesional as profesional.usuario.login for profesional in vm.profesionals track by profesional.profesional.login">
+                                   <option value=""></option>
+                               </select>
+                           </div>-->
+
+
+
+        <div class="row"/>
+
+
+        <div class="modal-body">
+            <h4>Detalle del Plano</h4>
+            <button type="button" ng-click="vm.togglePlanoDetalle()"
+                    class="btn btn-primary">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;<span>Agregar
+                    Detalle de Plano</span>
+            </button>
+            <hr>
+
+            <div uib-collapse="vm.isPlanoDetalleCollapsed">
+                <div class="col-md-12 center-block">
+
+                    <div class="form-group">
+                        <label data-translate="Tipo de Plano" for="field_tipoPlano">Tipo Plano</label>
+                        <select  class="form-control" id="field_tipoPlano" name="tipoPlano" ng-model="vm.planoDetalle.tipoPlano" ng-options="tipoPlano as tipoPlano.descripcion for tipoPlano in vm.tipoplanos| orderBy:'id' track by tipoPlano.descripcion">
+                            <option value="Seleccione un tipo plano"></option>
+                        </select>
+                    </div>    
+
+
+                    <div class="col-xs-3 no-padding-left" ngf-drop
+                         ngf-change="vm.setArchivo($file, vm.planoDetalle.archivo)">
+                        <label class="control-label" data-translate="Archivo"
+                               for="field_archivo" required>Archivo</label>
+                        <div>
+                            <div ng-if="vm.planoDetalle.archivo.archivo" class="help-block clearfix">
+                                <a class="pull-left"
+                                   ng-click="vm.openFile(vm.planoDetalle.archivo.archivoContentType, vm.planoDetalle.archivo.archivo)"
+                                   data-translate="Ver archivo">open</a>
+                                <button type="button"
+                                        ng-click="vm.planoDetalle.archivo.archivo = null;
+                                        vm.planoDetalle.archivo.archivoContentType = null;"
+
+                                        class="btn btn-default btn-xs pull-right">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </div>
+                            <button type="button" ngf-select
+                                    class="btn btn-default btn-block"
+                                    ngf-change="vm.setArchivo($file, vm.planoDetalle.archivo)"
+                                    data-translate="Adjuntar archivo .PDF">Add blob
+                            </button>
+                        </div>
+                        <input type="hidden" class="form-control" name="archivo"
+                               id="field_archivo" ng-model="vm.planoDetalle.archivo.archivo"/> 
+                        <input
+                            type="hidden" class="form-control" name="archivoContentType"
+                            id="field_archivoContentType"
+                            ng-model="vm.planoDetalle.archivo.archivoContentType" />
+                    </div>
+
+                    <div class="row"/>
+
+                    <div class="form-group">
+                        <label class="control-label" data-translate="Comentario" required
+                               for="field_observaciones">Observaciones</label> <input
+                               type="text" class="form-control" name="observaciones"
+                               id="field_observaciones" ng-model="vm.planoDetalle.tramite.observaciones" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 center-block">
+                        <button type="button"
+                                ng-click="vm.addPlanoDetalle(vm.planoDetalle)"
+                                ng-disabled="editForm.observaciones.$invalid || editForm.archivo.$invalid"
+                                class="btn btn-primary">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Guardar
+                                Detalle de Plano</span>
+                        </button>
+                        <button type="button" ng-click="vm.togglePlanoDetalle()"
+                                class="btn btn-danger">
+                            <span class="glyphicon glyphicon-share-alt"></span>&nbsp;<span>Salir</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Fin uib-collapse -->
+
+
+            <div class="table-responsive">
+                <table class="jh-table table table-striped">
+                    <thead>
+                        <tr>
+                            <th><span
+                                    data-translate="obrasPrivadas4App.plano.tipoPlano">C�digo</span>
+                            </th>
+                            <th><span
+                                    data-translate="Comentario">Descripcion</span>
+                            </th>
+                            <th><span
+                                    data-translate="obrasPrivadas4App.plano.archivo">Descripcion</span>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="planoDetalle in vm.plano.planoDetalles">
+                            <td>{{planoDetalle.tipoPlano.descripcion}}</td>
+                            <td>{{planoDetalle.tramite.observaciones}}</td>
+                            <td><a class="pull-left"
+                                   ng-click="vm.openFile(vm.planoDetalle.archivo.archivoContentType, vm.planoDetalle.archivo.archivo)"
+                                   data-translate="Click para ver archivo">open</a></td>
+                            <td class="text-right">
+                                <div class="btn-group flex-btn-group-container">
+                                    <button type="button"
+                                            ng-click="vm.removePlanoDetalle($index)"
+                                            class="btn btn-danger btn-sm">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- fin class table-responsive -->
+
+        </div>
+        <!-- Fin form class -->
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal"
+            ng-click="vm.clear()">
+        <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+            data-translate="entity.action.cancel">Cancel</span>
+    </button>
+    <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving"
+            class="btn btn-primary">
+        <span class="glyphicon glyphicon-save"></span>&nbsp;<span
+            data-translate="entity.action.save">Save</span>
+    </button>
+</div>
+</form>

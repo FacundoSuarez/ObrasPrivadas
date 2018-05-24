@@ -1,0 +1,68 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myTramiteLabel" data-translate="obrasPrivadas4App.tramite.home.createOrEditLabel">Create or edit a Tramite</h4>
+    </div>
+    <div class="modal-body">
+        <div class="container col-md-12">
+            <div class="form-group" ng-show="vm.tramite.id">
+                <br>
+                <label for="id" data-translate="global.field.id">ID</label>
+                <input type="text" class="form-control" id="id" name="id"
+                       ng-model="vm.tramite.id" readonly />
+            </div>
+            <div class="row">
+                <div class="col-md-3 align-middle">
+                    <label class="control-label" data-translate="obrasPrivadas4App.tramite.fecha" for="field_fecha">Fecha</label>
+                    <div class="input-group">
+                        <input id="field_fecha" type="text" class="form-control" name="fecha" datetime-picker="{{dateformat}}" ng-disabled="vm.tramite.id" ng-model="vm.tramite.fecha" is-open="vm.datePickerOpenStatus.fecha"
+                               />
+                    </div>
+                </div>
+                <!--                <div class="col-md-4"></div>-->
+                <div class="col-md-3 align-middle">
+                    <label class="control-label" data-translate="obrasPrivadas4App.tramite.fechaFin" for="field_fechaFin">Fecha Fin</label>
+                    <div class="input-group">
+                        <input id="field_fechaFin" type="text" class="form-control" name="fechaFin" datetime-picker="{{dateformat}}" ng-disabled="vm.tramite.id" ng-model="vm.tramite.fechaFin" is-open="vm.datePickerOpenStatus.fechaFin"
+                               />
+                    </div>
+                </div>
+            </div>    
+            <div class="form-group">
+                <label class="control-label" data-translate="obrasPrivadas4App.tramite.observaciones" for="field_observaciones">Observaciones</label>
+                <input type="text" class="form-control" name="observaciones" id="field_observaciones" maxlength="500" required
+                       ng-model="vm.tramite.observaciones"
+                       />
+            </div>
+            <div class="form-group">
+                <a class="pull-left"
+                   ng-click="vm.openFile(vm.planoDetalle.archivo.archivoContentType, vm.planoDetalle.archivo.archivo)"
+                   data-translate="Ver archivo">open</a>
+                <button type="button"
+                        ng-click="vm.planoDetalle.archivo.archivo = null;
+                            vm.planoDetalle.archivo.archivoContentType = null;"
+
+                        class="btn btn-default btn-xs pull-right">
+                    <span class="glyphicon glyphicon-remove"></span>
+
+                </button>
+                <button type="button" ngf-select
+                        class="btn btn-default btn-block"
+                        ngf-change="vm.setArchivo($file, vm.planoDetalle.archivo)"
+                        data-translate="Adjuntar archivo .PDF">Add blob
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

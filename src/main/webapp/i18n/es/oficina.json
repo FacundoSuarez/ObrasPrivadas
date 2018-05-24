@@ -1,0 +1,24 @@
+{
+    "obrasPrivadas4App": {
+        "oficina" : {
+            "home": {
+                "title": "Oficinas",
+                "createLabel": "Crear nuevo Oficina",
+                "createOrEditLabel": "Crear o editar Oficina"
+            },
+            "created": "Un nuevo Oficina ha sido creado con el identificador {{ param }}",
+            "updated": "Un Oficina ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Oficina ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Oficina {{ id }}?"
+            },
+            "detail": {
+                "title": "Oficina"
+            },
+            "profesional": "Profesional",
+            "correcciones": "Correcciones",
+            "tipoPlano": "Tipo Plano",
+            "operador": "Operador"
+        }
+    }
+}

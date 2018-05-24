@@ -1,0 +1,58 @@
+<div>
+    <h2 data-translate="obrasPrivadas4App.oficina.home.title">Oficinas</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="oficina.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="obrasPrivadas4App.oficina.home.createLabel">
+                        Create new Oficina
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="Nombre">Profesional</span></th>
+                    <th><span data-translate="obrasPrivadas4App.oficina.tipoPlano">Tipo Plano</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="oficina in vm.oficinas track by oficina.id">
+                    <td><a ui-sref="oficina-detail({id:oficina.id})">{{oficina.id}}</a></td>
+                    <td>{{oficina.profesional}}</td>
+                    <td>{{oficina.tipoPlano.descripcion}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="oficina-detail({id:oficina.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="oficina.edit({id:oficina.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="oficina.delete({id:oficina.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

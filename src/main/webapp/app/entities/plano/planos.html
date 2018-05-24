@@ -1,0 +1,73 @@
+<div>
+    <h2 data-translate="obrasPrivadas4App.plano.home.title">Planos</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="plano.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="obrasPrivadas4App.plano.home.createLabel">
+                        Crear nuevo tramite
+                    </span>
+                </button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-8 no-padding-left">
+                <h4> Si usted ya inició un plano, y desea consultar su estado o revisarlo, ingrese a la pestaña de "Estado de planos".</h4>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="#">ID</span></th>
+                    <th><span data-translate="obrasPrivadas4App.plano.fecha">Fecha</span></th>
+                    <th><span data-translate="obrasPrivadas4App.plano.cuitResponsable">Cuit Responsable</span></th>
+                    <th><span data-translate="obrasPrivadas4App.plano.responsable">Responsable</span></th>
+                    <th>Nomeclatura</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="plano in vm.planos track by plano.id">
+                    <td>{{plano.id}}</td>
+                    <td>{{plano.fecha| date:'dd/MM/yyyy HH:mm'}}</td>
+                    <td>{{plano.cuitResponsable}}</td>
+                    <td>{{plano.responsable}}</td>
+                    <td>{{plano.nomeclatura}}</td>
+                    <!--                    <td>{{detalle.tipoPlano.descripcion}}</td>
+                                        <td>
+                                            <a ng-if="planoDelalle.archivo.archivo" ng-click="vm.openFile(planoDelalle.archivo.archivo.archivoContentType, planoDelalle.archivo.archivo)" data-translate="entity.action.open">open</a>
+                                            <span ng-if="planoDelalle.archivo.archivo">{{planoDelalle.archivo.archivo.archivoContentType}}, {{vm.byteSize(planoDelalle.archivo.archivo)}}</span>
+                                        </td>-->
+                    <!--                    <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="submit"
+                                                        ui-sref="plano-detail({id:plano.id})"
+                                                        class="btn btn-info btn-sm">
+                                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                                    <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                                                </button>-->
+                    <!--                        <button type="submit"
+                                                        ui-sref="plano.edit({id:plano.id})"
+                                                        class="btn btn-primary btn-sm">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                    <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                                                </button>
+                                                <button type="submit"
+                                                        ui-sref="plano.delete({id:plano.id})"
+                                                        class="btn btn-danger btn-sm">
+                                                    <span class="glyphicon glyphicon-remove-circle"></span>
+                                                    <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                                                </button>-->
+                    </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

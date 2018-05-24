@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="obrasPrivadas4App.oficina.detail.title">Oficina</span> {{vm.oficina.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="obrasPrivadas4App.oficina.profesional">Profesional</span></dt>
+        <dd>
+            <span>{{vm.oficina.profesional}}</span>
+        </dd>
+        <dt><span data-translate="obrasPrivadas4App.oficina.correcciones">Correcciones</span></dt>
+        <dd>
+            <span>{{vm.oficina.correcciones}}</span>
+        </dd>
+        <dt><span data-translate="obrasPrivadas4App.oficina.tipoPlano">Tipo Plano</span></dt>
+        <dd>
+            <a ui-sref="tipo-plano-detail({id:vm.oficina.tipoPlano.id})">{{vm.oficina.tipoPlano.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="oficina-detail.edit({id:vm.oficina.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

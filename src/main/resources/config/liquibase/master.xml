@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112242_added_entity_Plano.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112243_added_entity_PlanoDetalle.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112244_added_entity_Tramite.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112245_added_entity_Archivo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112246_added_entity_Profesional.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112247_added_entity_ContactoProfesional.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112248_added_entity_ContactoOperador.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112249_added_entity_TipoContacto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112250_added_entity_Operador.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112251_added_entity_Oficina.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112252_added_entity_TipoPlano.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20171205112242_added_entity_constraints_Plano.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112243_added_entity_constraints_PlanoDetalle.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112244_added_entity_constraints_Tramite.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112245_added_entity_constraints_Archivo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112246_added_entity_constraints_Profesional.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112247_added_entity_constraints_ContactoProfesional.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112248_added_entity_constraints_ContactoOperador.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112250_added_entity_constraints_Operador.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171205112251_added_entity_constraints_Oficina.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

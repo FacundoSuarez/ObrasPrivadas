@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "archivos",
+            "otherEntityName": "archivo",
+            "otherEntityRelationshipName": "tramite"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "planoDetalle",
+            "otherEntityName": "planoDetalle",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "operador",
+            "otherEntityName": "operador",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fecha",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "fechaFin",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "observaciones",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171205112244",
+    "entityTableName": "tramite",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

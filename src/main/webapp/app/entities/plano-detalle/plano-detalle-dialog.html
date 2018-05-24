@@ -1,0 +1,80 @@
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPlanoDetalleLabel" data-translate="obrasPrivadas4App.planoDetalle.home.createOrEditLabel">Create or edit a Plano Detalle</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.planoDetalle.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.planoDetalle.id" readonly />
+        </div>
+        <div class="col-xs-3 no-padding-left">
+            <label data-translate="obrasPrivadas4App.planoDetalle.plano" for="field_plano">Plano</label>
+            <select class="form-control" id="field_plano" name="plano" ng-disabled="vm.planoDetalle.id" ng-model="vm.planoDetalle.plano" ng-options="plano as plano.id for plano in vm.planos track by plano.id">
+                <option value=""></option>
+            </select>
+        </div>
+         <div class="col-xs-3 no-padding-left">
+            <label data-translate="obrasPrivadas4App.planoDetalle.tipoPlano" for="field_tipoPlano">Tipo Plano</label>
+            <select class="form-control" id="field_tipoPlano" name="tipoPlano" ng-disabled="vm.planoDetalle.id" ng-model="vm.planoDetalle.tipoPlano" ng-options="tipoPlano as tipoPlano.descripcion for tipoPlano in vm.tipoplanos track by tipoPlano.descripcion" readonly>
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="col-xs-3 no-padding-left">
+            <label class="control-label" data-translate="obrasPrivadas4App.planoDetalle.estado" for="field_estado">Estado</label>
+            <select class="form-control" name="estado" ng-disabled="vm.planoDetalle.id" ng-model="vm.planoDetalle.estado" id="field_estado" readonly>
+                <option value="ENTREGADO" data-translate="obrasPrivadas4App.EstadoPlano.ENTREGADO">ENTREGADO</option>
+                <option value="REVISION" data-translate="obrasPrivadas4App.EstadoPlano.REVISION">REVISION</option>
+                <option value="APROBADO" data-translate="obrasPrivadas4App.EstadoPlano.APROBADO">APROBADO</option>
+            </select>
+        </div>
+        <div class="col-xs-3 no-padding-left" ngf-drop ngf-change="vm.setArchivo($file, vm.archivo)">
+            <label class="control-label" data-translate="Archivo" for="field_archivo">Archivo</label>
+            <div>
+                <div ng-if="vm.archivo.archivo" class="help-block clearfix">
+                    <a class="pull-left" ng-click="vm.openFile(vm.archivo.archivoContentType, vm.archivo.archivo)" data-translate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{vm.archivo.archivoContentType}}, {{vm.byteSize(vm.archivo.archivo)}}</span>
+                    <button type="button" ng-click="vm.archivo.archivo=null;vm.archivo.archivoContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setArchivo($file, vm.archivo)" data-translate="entity.action.addblob">
+                    Add blob
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="archivo" id="field_archivo"
+                    ng-model="vm.archivo.archivo"
+                    />
+            <input type="hidden" class="form-control" name="archivoContentType" id="field_archivoContentType"
+                    ng-model="vm.archivo.archivoContentType" />
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="form-group">
+                        <label class="control-label" data-translate="Comentario" required
+                               for="field_observaciones">Observaciones</label> <input
+                               type="text" class="form-control" name="observaciones"
+                               id="field_observaciones" ng-model="vm.planoDetalle.tramite.observaciones" />
+                    </div>
+        
+    </div>
+        
+          
+       
+   
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

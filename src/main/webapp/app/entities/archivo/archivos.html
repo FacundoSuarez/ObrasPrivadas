@@ -1,0 +1,54 @@
+<div>
+    <h2 data-translate="Plano Detalle">Archivos</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+            </div>
+            <input type="text" class="form-control" ng-model="searchAll" name="searchAll" placeholder="Buscar">
+    <br/>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th><span>Profesional</span></th>
+                    <th><span data-translate="Responsable">Responsable</span></th>
+                    <th><span data-translate="Estado">Estado</span></th>
+                    <th><span>Fecha</span></th>
+                    <th><span data-translate="Tipo Plano">Tipo Plano</span></th>
+                    <th>Nomeclatura</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="archivo in vm.archivos | filter:searchAll track by archivo.id ">
+                    <td>{{archivo.tramite.planoDetalle.plano.id}}</td>
+                    <td>{{archivo.tramite.planoDetalle.plano.profesional.usuario.login}}</td>
+<!--                    <td>{{archivo.tramite.planoDetalle.plano.profesional.usuario.login}}</td>-->
+                    <td>{{archivo.tramite.planoDetalle.plano.responsable}}</td>
+                    <td>{{archivo.tramite.planoDetalle.estado}}</td>
+                    <td>{{archivo.tramite.planoDetalle.plano.fecha | date:'dd/MM/yyyy HH:mm'}}</td>
+                    <td>{{archivo.tramite.planoDetalle.tipoPlano.descripcion}}</td>
+                    <td>{{archivo.tramite.planoDetalle.plano.nomeclatura}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="archivo-detail({id:archivo.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div>
+    <h2 data-translate="Operadores">Operadores</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="operador.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="obrasPrivadas4App.operador.home.createLabel">
+                        Create new Operador
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <input type="text" class="form-control" ng-model="searchAll" name="searchAll" placeholder="Buscar">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="obrasPrivadas4App.operador.usuario">Usuario</span></th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th><span data-translate="obrasPrivadas4App.operador.oficina">Oficina</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="operador in vm.operadors | filter:searchAll track by operador.id">
+                    <td>{{operador.usuario.login}}</td>
+                    <td>{{operador.usuario.firstName}}</td>
+                    <td>{{operador.usuario.lastName}}</td>
+                    <td>{{operador.usuario.email}}</td>
+                    <td>{{operador.oficina.profesional}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="operador-detail({id:operador.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="operador.edit({id:operador.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="operador.delete({id:operador.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

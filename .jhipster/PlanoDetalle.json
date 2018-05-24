@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tramites",
+            "otherEntityName": "tramite",
+            "otherEntityRelationshipName": "planoDetalle"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "plano",
+            "otherEntityName": "plano",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "tipoPlano",
+            "otherEntityName": "tipoPlano",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "estado",
+            "fieldType": "EstadoPlano",
+            "fieldValues": "ENTREGADO,REVISION,APROBADO"
+        }
+    ],
+    "changelogDate": "20171205112243",
+    "entityTableName": "plano_detalle",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

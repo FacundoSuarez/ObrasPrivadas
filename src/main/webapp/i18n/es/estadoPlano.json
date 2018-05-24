@@ -1,0 +1,10 @@
+{
+    "obrasPrivadas4App": {
+        "EstadoPlano" : {
+            "null": "",
+            "ENTREGADO": "ENTREGADO",
+            "REVISION": "REVISION",
+            "VISADO_SATISFACTORIO": "VISADO SATISFACTORIO"
+        }
+    }
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Activación Obras Privadas MGSM</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+    </head>
+    <body>
+        <p th:text="#{email.activation.greeting(${user.firstName})}">
+            Estimado
+        </p>
+        <p>
+            Su usuario en el sistema de Obras Privadas de la Municipalidad de General San Martin fue creado con éxito! Ingrese a la siguiente dirección para cambiar su contraseña:
+        </p>
+        <p>
+          <a th:href="@{|${baseUrl}/#/reset/finish?key=${user.resetKey}|}"
+             th:text="@{|${baseUrl}/#/reset/finish?key=${user.resetKey}|}">Login link</a>
+        </p>
+        <p>
+            <span th:text="#{email.activation.text2}">Saludos.</span>
+            <br/>
+            <em>© Equipo de Desarrollo de Sistemas. Municipalidad de Gral. San Martín</em>
+        </p>
+    </body>
+</html>
