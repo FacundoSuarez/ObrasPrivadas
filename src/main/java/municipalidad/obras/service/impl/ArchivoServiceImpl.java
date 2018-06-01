@@ -69,29 +69,51 @@ public class ArchivoServiceImpl implements ArchivoService{
     @Override
     public Archivo save(Archivo archivo) {
         log.debug("Request to save Archivo : {}", archivo);
+        
+        //Crea el duplicado del archivo para poder manejar el "historial de cambios"
+        Archivo archivo1 = new Archivo ();
+        archivo1.setArchivo(archivo.getArchivo());
+        archivo1.setArchivoContentType(archivo.getArchivoContentType());
+        archivo1.setTramite(archivo.getTramite());
+        archivoRepository.save(archivo1);
+        
+        Tramite tramite1 = new Tramite();
+//        tramite1.setFecha(archivo.getTramite().getFecha());
+//        tramite1.setObservaciones(archivo.getTramite().getObservaciones());
+//        tramite1.s
+        
+        tramite1.setArchivos(archivo1.getTramite().getArchivos());
+        tramite1.setFecha(archivo1.getTramite().getFecha());
+        tramite1.setFechaFin(archivo1.getTramite().getFechaFin());
+        tramite1.setObservaciones(archivo1.getTramite().getObservaciones());
+        tramite1.setOperador(archivo1.getTramite().getOperador());
+        tramite1.setPlanoDetalle(archivo1.getTramite().getPlanoDetalle());
+        
+        tramiteService.save(tramite1);
+                
+                
+        
         //Envía email notificaciones
         User email = archivo.getTramite().getPlanoDetalle().getPlano().getProfesional().getUsuario();
         mailService.sendNotificationMail(email);
 
         //Setea los campos que faltan en todo el tramite
-        Instant now = Instant.now();
-        ZoneId zoneId = ZoneId.of("UTC-3");
         Optional<User> user = userService.getUserWithAuthorities();
         archivo.getTramite().setOperador(operadorRepository.findByUsuario(user.get()));
-        archivo.getTramite().setFechaFin(ZonedDateTime.ofInstant(now, zoneId));
+        archivo.getTramite().setFechaFin(ZonedDateTime.now());
 
         //Guarda PlanoDetalle
         planoDetalleService.save(archivo.getTramite().getPlanoDetalle());
-
+        
         //Guarda Tramite
         tramiteService.save(archivo.getTramite());
-
+        
+        
         return archivoRepository.save(archivo);
     }
     
     
-    
-    //@Override
+    @Override
     public Archivo firstSave(Archivo archivo){
         log.debug("Request to save Archivo : {}", archivo);
         return archivoRepository.save(archivo);
@@ -133,25 +155,4 @@ public class ArchivoServiceImpl implements ArchivoService{
         log.debug("Request to delete Archivo : {}", id);
         archivoRepository.delete(id);
     }
-    
-    
-    //@Override
-//    public Archivo saveDTO(ArchivoDTO dto) {
-//        Archivo archivo = new Archivo();
-//        Archivo result = archivoRepository.save(archivo);
-//        result.setArchivo(dto.getArchivo());
-//        result.setId(dto.getId());
-//        
-//        for (PlanoDetalleDTO detalle : dto.getPlanoDetalles()) {
-//        	
-//        	EstadoPlano estadoPlano = null;
-//        	detalle.setEstado(estadoPlano.REVISION);                
-//        	
-//            PlanoDetalle planoDetalle = planoDetalleService.save(getConvertPlanoDetalleFromDTO(detalle));
-//        
-//        }
-//        archivoRepository.save(archivo);
-//        return result;
-//    }
-      
 }

@@ -147,7 +147,7 @@ public class PlanoServiceImpl implements PlanoService{
             tramite = detalle.getTramite();
             tramite.setPlanoDetalle(planoDetalle);
             tramite.setFecha(dto.getFecha());
-            tramite = tramiteService.save(tramite);
+            tramite = tramiteService.firstSave(tramite);
             /// archivo
             archivo = detalle.getArchivo();
             archivo.setTramite(tramite);

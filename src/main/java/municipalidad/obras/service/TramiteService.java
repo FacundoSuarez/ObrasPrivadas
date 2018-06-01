@@ -43,4 +43,6 @@ public interface TramiteService {
     //////////////////////////////////////////////
     
     List<TramiteDTO> findAll();
+    
+    Tramite firstSave(Tramite tramite);
 }

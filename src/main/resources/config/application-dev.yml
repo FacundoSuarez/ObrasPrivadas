@@ -19,13 +19,13 @@ spring:
         include: swagger
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://192.168.48.241:3306/obrasPrivadas4?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: obras
-        password: obras2018   
+#        url: jdbc:mysql://192.168.48.241:3306/obrasPrivadas4?useUnicode=true&characterEncoding=utf8&useSSL=false
+#        username: obras
+#        password: obras2018   
         
-#        url: jdbc:mysql://localhost:3306/obrasprivadas4?useUnicode=true&characterEncoding=utf8&useSSL=false
-#        username: root
-#        password: admin
+        url: jdbc:mysql://localhost:3306/obrasprivadas4?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: admin
         
         
         
