@@ -1,7 +1,10 @@
 package municipalidad.dto;
 
+import java.util.HashSet;
+import java.util.Set;
 import municipalidad.obras.domain.Archivo;
 import municipalidad.obras.domain.Plano;
+import municipalidad.obras.domain.PlanoDetalle;
 import municipalidad.obras.domain.TipoPlano;
 import municipalidad.obras.domain.Tramite;
 import municipalidad.obras.domain.enumeration.EstadoPlano;
@@ -17,28 +20,27 @@ public class PlanoDetalleDTO {
     private Plano plano;
 
     private TipoPlano tipoPlano;
-
+    
+    private Set<Tramite> tramites = new HashSet<>();
+    
     private Archivo archivo;
+    
+    private PlanoDetalle planoDetalle;
+    
+    
+    
+    
+    
+    
 
-    private Archivo observaciones;
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public Archivo getObservaciones() {
-        return observaciones;
+    public PlanoDetalle getPlanoDetalle() {
+        return planoDetalle;
     }
 
-    public void setObservaciones(Archivo observaciones) {
-        this.observaciones = observaciones;
+    public void setPlanoDetalle(PlanoDetalle planoDetalle) {
+        this.planoDetalle = planoDetalle;
     }
-
+    
     public Long getId() {
         return id;
     }
@@ -79,6 +81,14 @@ public class PlanoDetalleDTO {
         this.tipoPlano = tipoPlano;
     }
 
+    public Set<Tramite> getTramites() {
+        return tramites;
+    }
+
+    public void setTramites(Set<Tramite> tramites) {
+        this.tramites = tramites;
+    }
+
     public Archivo getArchivo() {
         return archivo;
     }
@@ -86,5 +96,7 @@ public class PlanoDetalleDTO {
     public void setArchivo(Archivo archivo) {
         this.archivo = archivo;
     }
+
+    
 
 }

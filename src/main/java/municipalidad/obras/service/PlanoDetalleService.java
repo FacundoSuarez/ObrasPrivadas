@@ -1,5 +1,6 @@
 package municipalidad.obras.service;
 
+import municipalidad.dto.PlanoDetalleDTO;
 import municipalidad.obras.domain.PlanoDetalle;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,5 +1,6 @@
 package municipalidad.obras.service.impl;
 
+import municipalidad.dto.PlanoDetalleDTO;
 import municipalidad.obras.service.PlanoDetalleService;
 import municipalidad.obras.domain.PlanoDetalle;
 import municipalidad.obras.repository.PlanoDetalleRepository;
@@ -74,4 +75,18 @@ public class PlanoDetalleServiceImpl implements PlanoDetalleService{
         log.debug("Request to delete PlanoDetalle : {}", id);
         planoDetalleRepository.delete(id);
     }
+    
+   
+    
+
+    @Transactional(readOnly = true)
+    public PlanoDetalleDTO findOneDTO(Long id) {
+        log.debug("Request to get PlanoDetalle : {}", id);
+        
+        PlanoDetalleDTO retorno = new PlanoDetalleDTO();
+        retorno.setPlanoDetalle(planoDetalleRepository.findOne(id));
+        return null;
+    }
+    
+    
 }

@@ -46,19 +46,6 @@ public class TramiteServiceImpl implements TramiteService{
     @Override
     public Tramite save(Tramite tramite) {
         log.debug("Request to save Tramite : {}", tramite);
-        
-        ////Crea el duplicado del tramite para poder manejar el "historial de cambios"
-        
-//        Tramite tramite1 = new Tramite();
-//        tramite1.setArchivos(tramite.getArchivos());
-//        tramite1.setFecha(tramite.getFecha());
-//        tramite1.setFechaFin(tramite.getFechaFin());
-//        tramite1.setObservaciones(tramite.getObservaciones());
-//        tramite1.setOperador(tramite.getOperador());
-//        tramite1.setPlanoDetalle(tramite.getPlanoDetalle());
-//        
-//        tramiteRepository.save(tramite1);
-        
         return tramiteRepository.save(tramite);
     }
     
@@ -67,18 +54,7 @@ public class TramiteServiceImpl implements TramiteService{
         log.debug("Request to save Tramite : {}", tramite);
         return tramiteRepository.save(tramite);
     }
-
-    /**
-     * Get all the tramites.
-     *
-     * @return the list of entities
-     */
-    /*@Override
-    @Transactional(readOnly = true)
-    public List<Tramite> findAll() {
-        log.debug("Request to get all Tramites");
-        return tramiteRepository.findAll();
-    }*/
+    
 
     /**
      * Get one tramite by id.

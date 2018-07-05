@@ -8,15 +8,21 @@ package municipalidad.dto;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import municipalidad.obras.domain.Archivo;
+import municipalidad.obras.domain.PlanoDetalle;
 
 import municipalidad.obras.domain.Profesional;
+import municipalidad.obras.domain.Tramite;
 import municipalidad.obras.domain.User;
+import org.terracotta.offheapstore.util.AATreeSet;
 
 /**
  *
  * @author Facundo
  */
 public class PlanoDTO {
+    
+    
     private Long id;
 
     private ZonedDateTime fecha;
@@ -32,10 +38,53 @@ public class PlanoDTO {
     private User usuario;
     
     private String nomeclatura;
+    
+    private Set<Tramite> tramites = new HashSet<>();
+
+    private Set<Archivo> archivos = new HashSet<>();
+    
+    private PlanoDetalle planoDetalle;
+    
+    private Set<PlanoDetalle> planoDetalleSet = new HashSet<>();
 
     
     
     
+    
+    
+    
+    public Set<PlanoDetalle> getPlanoDetalleSet() {
+        return planoDetalleSet;
+    }
+
+    public void setPlanoDetalleSet(Set<PlanoDetalle> planoDetalleSet) {
+        this.planoDetalleSet = planoDetalleSet;
+    }
+    
+    public PlanoDetalle getPlanoDetalle() {
+        return planoDetalle;
+    }
+
+    public void setPlanoDetalle(PlanoDetalle planoDetalle) {
+        this.planoDetalle = planoDetalle;
+    }
+    
+    public Set<Archivo> getArchivos() {
+        return archivos;
+    }
+
+    public void setArchivos(Set<Archivo> archivos) {
+        this.archivos = archivos;
+    }
+    
+    
+    public Set<Tramite> getTramites() {
+        return tramites;
+    }
+
+    public void setTramites(Set<Tramite> tramites) {
+        this.tramites = tramites;
+    }
     
     
     public String getNomeclatura() {
@@ -101,9 +150,4 @@ public class PlanoDTO {
     public void setProfesional(Profesional profesional) {
         this.profesional = profesional;
     }
-
-
-
-    
-    
 }

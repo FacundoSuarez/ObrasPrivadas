@@ -7,7 +7,7 @@
 
     PlanoDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Plano', 'PlanoDetalle', 'Profesional'];
 
-    function PlanoDetailController($scope, $rootScope, $stateParams, previousState, entity, Plano, PlanoDetalle, Profesional) {
+    function PlanoDetailController($scope, $rootScope, $stateParams, previousState, entity , Plano, PlanoDetalle, Profesional) {
         var vm = this;
 
         vm.plano = entity;

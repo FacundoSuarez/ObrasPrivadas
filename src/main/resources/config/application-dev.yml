@@ -25,7 +25,7 @@ spring:
         
         url: jdbc:mysql://localhost:3306/obrasprivadas4?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
-        password: admin
+        password: root
         
         
         
@@ -46,16 +46,16 @@ spring:
             hibernate.generate_statistics: false
             hibernate.cache.region.factory_class: io.github.jhipster.config.jcache.NoDefaultJCacheRegionFactory
     mail:
-        host: smtp-mail.outlook.com
+        host: smtp.gmail.com
         port: 587
-        username: facundoagustin1994@hotmail.com
-        password: 321654
+        username: sistemasmgsm@gmail.com
+        password: miniki321654
         protocol: smtp
         tls: true
         properties.mail.smtp:
             auth: true
             starttls.enable: true
-            ssl.trust: smtp-mail.outlook.com
+            ssl.trust: smtp.gmail.com
     messages:
         cache-seconds: 1
     thymeleaf:

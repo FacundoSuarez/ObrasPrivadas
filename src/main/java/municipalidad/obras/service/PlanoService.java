@@ -44,4 +44,9 @@ public interface PlanoService {
     ///////////////////////////////////////////////////
     
     Plano saveDTO(PlanoDTO dto);
+    PlanoDTO findOneDTO(Long id);
+    
+    
+    
+  
 }

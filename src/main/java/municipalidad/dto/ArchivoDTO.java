@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package municipalidad.dto;
 
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
-import municipalidad.obras.domain.Archivo;
 import municipalidad.obras.domain.Operador;
 
 /**

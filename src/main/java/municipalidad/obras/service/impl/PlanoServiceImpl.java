@@ -1,10 +1,11 @@
-    package municipalidad.obras.service.impl;
+package municipalidad.obras.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import javax.print.attribute.HashAttributeSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,48 +20,57 @@ import municipalidad.obras.domain.PlanoDetalle;
 import municipalidad.obras.domain.Tramite;
 import municipalidad.obras.domain.User;
 import municipalidad.obras.domain.enumeration.EstadoPlano;
+import municipalidad.obras.repository.ArchivoRepository;
+import municipalidad.obras.repository.PlanoDetalleRepository;
 import municipalidad.obras.repository.PlanoRepository;
 import municipalidad.obras.repository.ProfesionalRepository;
+import municipalidad.obras.repository.TramiteRepository;
 import municipalidad.obras.service.ArchivoService;
 import municipalidad.obras.service.PlanoDetalleService;
 import municipalidad.obras.service.PlanoService;
 import municipalidad.obras.service.TramiteService;
 import municipalidad.obras.service.UserService;
+
 /**
  * Service Implementation for managing Plano.
  */
 @Service
 @Transactional
-public class PlanoServiceImpl implements PlanoService{
+public class PlanoServiceImpl implements PlanoService {
 
     private final Logger log = LoggerFactory.getLogger(PlanoServiceImpl.class);
 
     private final PlanoRepository planoRepository;
-    
+
     private final PlanoDetalleService planoDetalleService;
 
+    private final PlanoDetalleRepository planoDetalleRepository;
+
+    private final TramiteRepository tramiteRepository;
+
     private final TramiteService tramiteService;
-    
-    private final ArchivoService archivoService;    
-    
+
+    private final ArchivoService archivoService;
+
+    private final ArchivoRepository archivoRepository;
+
     private final UserService userService;
-    
+
     private final ProfesionalRepository profesionalRepository;
 
-    public PlanoServiceImpl(PlanoRepository planoRepository, PlanoDetalleService planoDetalleService, TramiteService tramiteService, ArchivoService archivoService, UserService userService, ProfesionalRepository profesionalRepository) {
+    public PlanoServiceImpl(PlanoRepository planoRepository, PlanoDetalleService planoDetalleService, PlanoDetalleRepository planoDetalleRepository, TramiteRepository tramiteRepository, TramiteService tramiteService, ArchivoService archivoService, ArchivoRepository archivoRepository, UserService userService, ProfesionalRepository profesionalRepository) {
         this.planoRepository = planoRepository;
         this.planoDetalleService = planoDetalleService;
+        this.planoDetalleRepository = planoDetalleRepository;
+        this.tramiteRepository = tramiteRepository;
         this.tramiteService = tramiteService;
         this.archivoService = archivoService;
+        this.archivoRepository = archivoRepository;
         this.userService = userService;
         this.profesionalRepository = profesionalRepository;
     }
 
-    
-
-   
-
-	/**
+    /**
      * Save a plano.
      *
      * @param plano the entity to save
@@ -70,6 +80,18 @@ public class PlanoServiceImpl implements PlanoService{
     public Plano save(Plano plano) {
         log.debug("Request to save Plano : {}", plano);
         return planoRepository.save(plano);
+    }
+
+    /**
+     * Delete the plano by id.
+     *
+     * @param id the id of the entity
+     */
+    @Override
+    public void delete(Long id) {
+
+        log.debug("Request to delete Plano : {}", id);
+        planoRepository.delete(id);
     }
 
     /**
@@ -101,23 +123,51 @@ public class PlanoServiceImpl implements PlanoService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Plano findOne(Long id) {
-        log.debug("Request to get Plano : {}", id);
-        return planoRepository.findOne(id);
+    public PlanoDTO findOneDTO(Long id) {
+
+        PlanoDTO planoDTO = new PlanoDTO();
+        Plano plano = planoRepository.findOne(id);
+
+        planoDTO.setId(plano.getId());
+        planoDTO.setFecha(plano.getFecha());
+        planoDTO.setCuitResponsable(plano.getCuitResponsable());
+        planoDTO.setResponsable(plano.getResponsable());
+        planoDTO.setProfesional(plano.getProfesional());
+        planoDTO.setPlanoDetalleSet(planoDetalleRepository.findByPlano(plano));
+
+        Set<Tramite> tramites = new HashSet<>();
+        Set<Tramite> tramitesPlanoDetalle = new HashSet<>();
+        for (PlanoDetalle detalle : planoDTO.getPlanoDetalleSet()) {
+            tramitesPlanoDetalle = tramiteRepository.findByPlanoDetalle(detalle);
+            for (Tramite tramitesPlanoDetalle1 : tramitesPlanoDetalle) {
+                tramites.add(tramitesPlanoDetalle1);
+            }
+        }
+        planoDTO.setTramites(tramites);
+
+        Set<Archivo> archivosTramite = new HashSet<>();
+        Set<Archivo> archivos = new HashSet<>();
+        for (Tramite tramiteDet : planoDTO.getTramites()) {
+            archivosTramite = archivoRepository.findByTramite(tramiteDet);
+            for (Archivo archivosTramite1 : archivosTramite) {
+                archivos.add(archivosTramite1);
+            }
+        }
+        planoDTO.setArchivos(archivos);
+        return planoDTO;
     }
 
-    /**
-     * Delete the plano by id.
-     *
-     * @param id the id of the entity
-     */
-    @Override
-    public void delete(Long id) {
-        log.debug("Request to delete Plano : {}", id);
-        planoRepository.delete(id);
+    public PlanoDetalleDTO getPlanoDetalleToDTO(PlanoDetalle plano) {
+        PlanoDetalleDTO retorno = new PlanoDetalleDTO();
+        retorno.setId(plano.getId());
+        retorno.setEstado(plano.getEstado());
+        retorno.setPlano(plano.getPlano());
+        retorno.setTipoPlano(plano.getTipoPlano());
+        return retorno;
     }
-    
+
     /////////////////////////////////////////////////////////
+    /*                       GUARDA                        */
     /////////////////////////////////////////////////////////
     @Override
     public Plano saveDTO(PlanoDTO dto) {
@@ -138,7 +188,7 @@ public class PlanoServiceImpl implements PlanoService{
 
         for (PlanoDetalleDTO detalle : dto.getPlanoDetalles()) {
             detalle.setPlano(result);
-            
+
             detalle.setEstado(estadoPlano.ENTREGADO);
 
             planoDetalle = planoDetalleService.save(getconvertoPlanoDetalleFromDTO(detalle));
@@ -148,6 +198,7 @@ public class PlanoServiceImpl implements PlanoService{
             tramite.setPlanoDetalle(planoDetalle);
             tramite.setFecha(dto.getFecha());
             tramite = tramiteService.firstSave(tramite);
+
             /// archivo
             archivo = detalle.getArchivo();
             archivo.setTramite(tramite);
@@ -161,36 +212,42 @@ public class PlanoServiceImpl implements PlanoService{
 
         return result;
     }
-    
-    
+
     public Plano getConvertPlanoFromDTO(PlanoDTO dto) {
-    	Plano retorno = new Plano();
-    	
-    	retorno.setCuitResponsable(dto.getCuitResponsable());
-    	retorno.setFecha(dto.getFecha());
-    	retorno.setId(dto.getId());
-    	retorno.setProfesional(dto.getProfesional());
-    	retorno.setResponsable(dto.getResponsable());
-    	retorno.setNomeclatura(dto.getNomeclatura());
-    	Set<PlanoDetalle> detallePl = new HashSet<>();
-    	for (PlanoDetalleDTO detDTO : dto.getPlanoDetalles()) {
-			detallePl.add(getconvertoPlanoDetalleFromDTO(detDTO));
-		}
-    	retorno.setPlanoDetalles(detallePl);
-    	
-    	return retorno;
+        Plano retorno = new Plano();
+
+        retorno.setCuitResponsable(dto.getCuitResponsable());
+        retorno.setFecha(dto.getFecha());
+        retorno.setId(dto.getId());
+        retorno.setProfesional(dto.getProfesional());
+        retorno.setResponsable(dto.getResponsable());
+        retorno.setNomeclatura(dto.getNomeclatura());
+        Set<PlanoDetalle> detallePl = new HashSet<>();
+
+        for (PlanoDetalleDTO detDTO : dto.getPlanoDetalles()) {
+            detallePl.add(getconvertoPlanoDetalleFromDTO(detDTO));
+        }
+        retorno.setPlanoDetalles(detallePl);
+
+        return retorno;
     }
-    
-    
+
     public PlanoDetalle getconvertoPlanoDetalleFromDTO(PlanoDetalleDTO dto) {
-    	PlanoDetalle retorno = new PlanoDetalle();
-    	
-    	retorno.setEstado(dto.getEstado());
-    	retorno.setId(dto.getId());
-    	retorno.setPlano(dto.getPlano());
-    	retorno.setTipoPlano(dto.getTipoPlano());
-    	retorno.addTramites(dto.getTramite());
-    	
-    	return retorno;
+        PlanoDetalle retorno = new PlanoDetalle();
+
+        retorno.setEstado(dto.getEstado());
+        retorno.setId(dto.getId());
+        retorno.setPlano(dto.getPlano());
+        retorno.setTipoPlano(dto.getTipoPlano());
+        retorno.addTramites(dto.getTramite());
+
+        return retorno;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Plano findOne(Long id) {
+        log.debug("Request to get Plano : {}", id);
+        return planoRepository.findOne(id);
     }
 }

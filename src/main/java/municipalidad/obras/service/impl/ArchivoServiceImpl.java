@@ -69,36 +69,31 @@ public class ArchivoServiceImpl implements ArchivoService{
     @Override
     public Archivo save(Archivo archivo) {
         log.debug("Request to save Archivo : {}", archivo);
+        Optional<User> user = userService.getUserWithAuthorities();
+        
         
         //Crea el duplicado del archivo para poder manejar el "historial de cambios"
-        Archivo archivo1 = new Archivo ();
-        archivo1.setArchivo(archivo.getArchivo());
-        archivo1.setArchivoContentType(archivo.getArchivoContentType());
-        archivo1.setTramite(archivo.getTramite());
-        archivoRepository.save(archivo1);
+        Tramite tramiteHist = new Tramite();
         
-        Tramite tramite1 = new Tramite();
-//        tramite1.setFecha(archivo.getTramite().getFecha());
-//        tramite1.setObservaciones(archivo.getTramite().getObservaciones());
-//        tramite1.s
+        tramiteHist.setId(null);
+        tramiteHist.setPlanoDetalle(archivo.getTramite().getPlanoDetalle());
+        tramiteHist.setObservaciones(archivo.getTramite().getObservaciones());
+        tramiteHist.setFecha(archivo.getTramite().getFecha());
+        tramiteHist.setFechaFin(ZonedDateTime.now());
+        tramiteHist.setOperador(operadorRepository.findByUsuario(user.get()));
+        tramiteService.save(tramiteHist);
         
-        tramite1.setArchivos(archivo1.getTramite().getArchivos());
-        tramite1.setFecha(archivo1.getTramite().getFecha());
-        tramite1.setFechaFin(archivo1.getTramite().getFechaFin());
-        tramite1.setObservaciones(archivo1.getTramite().getObservaciones());
-        tramite1.setOperador(archivo1.getTramite().getOperador());
-        tramite1.setPlanoDetalle(archivo1.getTramite().getPlanoDetalle());
+        planoDetalleService.save(archivo.getTramite().getPlanoDetalle());
         
-        tramiteService.save(tramite1);
-                
-                
+        Archivo archivoHist = new Archivo();
+        archivoHist.setId(null);
+        archivoHist.setArchivoContentType(archivo.getArchivoContentType());
+        archivoHist.setArchivo(archivo.getArchivo());
+        archivoHist.setTramite(tramiteHist);
+        archivoRepository.save(archivoHist);
         
-        //Envía email notificaciones
-        User email = archivo.getTramite().getPlanoDetalle().getPlano().getProfesional().getUsuario();
-        mailService.sendNotificationMail(email);
 
         //Setea los campos que faltan en todo el tramite
-        Optional<User> user = userService.getUserWithAuthorities();
         archivo.getTramite().setOperador(operadorRepository.findByUsuario(user.get()));
         archivo.getTramite().setFechaFin(ZonedDateTime.now());
 
@@ -107,6 +102,10 @@ public class ArchivoServiceImpl implements ArchivoService{
         
         //Guarda Tramite
         tramiteService.save(archivo.getTramite());
+        
+        //Envía email notificaciones
+        User email = archivo.getTramite().getPlanoDetalle().getPlano().getProfesional().getUsuario();
+        mailService.sendNotificationMail(email);
         
         
         return archivoRepository.save(archivo);

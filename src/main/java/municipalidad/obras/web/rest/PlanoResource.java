@@ -105,10 +105,10 @@ public class PlanoResource {
      */
     @GetMapping("/planos/{id}")
     @Timed
-    public ResponseEntity<Plano> getPlano(@PathVariable Long id) {
+    public PlanoDTO getPlano(@PathVariable Long id) {
         log.debug("REST request to get Plano : {}", id);
-        Plano plano = planoService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(plano));
+        PlanoDTO plano = planoService.findOneDTO(id);
+        return plano;
     }
 
     /**
