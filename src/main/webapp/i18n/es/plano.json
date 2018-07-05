@@ -22,7 +22,21 @@
             "observaciones": "Observaciones",
             "archivo": "Archivo",
             "tipoPlano": "Tipo de Plano",
-            "profesional": "Profesional"
+            "profesional": "Profesional",
+            
+            "ENTREGADO": "ENTREGADO",
+            "REVISION": "REVISION",
+            "VISADO_SATISFACTORIO": "VISADO SATISFACTORIO"
+        },
+        "plano-detalle" : {
+            "ENTREGADO": "ENTREGADO",
+            "REVISION": "REVISION",
+            "VISADO_SATISFACTORIO": "VISADO SATISFACTORIO"
+        },
+        "EstadoPlano" : {
+            "ENTREGADO": "ENTREGADO",
+            "REVISION": "REVISION",
+            "VISADO_SATISFACTORIO": "VISADO SATISFACTORIO"
         }
     }
 }

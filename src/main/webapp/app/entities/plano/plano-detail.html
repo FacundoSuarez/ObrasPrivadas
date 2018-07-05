@@ -1,82 +1,42 @@
 
 <div>
     <h2><span data-translate="obrasPrivadas4App.plano.detail.title">Plano</span> {{vm.plano.id}}</h2>
-    
-    <h5><b>Fecha Presentación: </b><span>{{vm.plano.fecha | date:'dd/MM/yyyy HH:mm'}}</span></h5>
+
+    <h5><b>Fecha Presentación: </b><span>{{vm.plano.fecha| date:'dd/MM/yyyy HH:mm'}}</span></h5>
     <h5><b>Responsable: </b><span>{{vm.plano.responsable}}</span></h5>
     <h5><b>CUIT: </b><span>{{vm.plano.cuitResponsable}}</span></h5>
-    
-<!--    
-    <hr>
-    <jhi-alert-error></jhi-alert-error>-->
-    
-<!--    <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="obrasPrivadas4App.plano.fecha">Fecha</span></dt>
-        <dd>
-            <span>{{vm.plano.fecha | date:'medium'}}</span>
-        </dd>
-        <dt><span data-translate="obrasPrivadas4App.plano.cuitResponsable">Cuit Responsable</span></dt>
-        <dd>
-            <span>{{vm.plano.cuitResponsable}}</span>
-        </dd>
-        <dt><span data-translate="obrasPrivadas4App.plano.responsable">Responsable</span></dt>
-        <dd>
-            <span>{{vm.plano.responsable}}</span>
-        </dd>
-    </dl>-->
-<!-- <li ng-repeat="tramites in vm.plano">{{tramites}}</li>
- <tr ng-repeat="tramites in vm.plano">
-      <td>{{plano.id}}</td>-->
-<div class="table-responsive">
+    <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
                     <th><span>Fecha</span></th>
                     <th><span>Tipo Plano</span></th>
-                    <th><span>Observaciones</span></th>
-                    <th><span>Estado</span></th>     
-                    <th><span>Operador</span></th>
-                    <th><span>Archivo</span></th>
-
-
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="tramite in vm.plano.tramites">
-                    <td>{{tramite.fecha | date:'dd/MM/yyyy HH:mm'}}</td>
-                    <td>{{tramite.planoDetalle.tipoPlano.descripcion}}</td>
-                    <td>{{tramite.planoDetalle.plano.nomeclatura}}</td>
-                    <td>{{tramite.planoDetalle.estado}}</td>   
-                    <td>{{tramite.fecha| date:'dd/MM/yyyy HH:mm'}}</td>
-                    <td>{{tramite.fechaFin| date:'dd/MM/yyyy HH:mm'}}</td>
-                    <td>{{tramite.observaciones}}</td>
-                    <td>{{tramite.operador.usuario.login}}</td>
-                    
+                <tr ng-repeat="planoDetalleSet in vm.plano.planoDetalleSet">
+                    <td>{{planoDetalleSet.estado}}</td>
+                    <td>{{planoDetalleSet.tipoPlano.descripcion}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
-                            <a ng-click="vm.openFile(tramite.archivos[0].archivoContentType, tramite.archivos[0].archivo)">
-                                <button type="button" class="btn btn-info">Abrir <span class="glyphicon glyphicon-file"></span></button>
-                            </a>
                             <button type="submit"
-                                    ui-sref="tramite.edit({id:tramite.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="tramite-detail({id:tramite.id})"
+                                    ui-sref="plano-detalle-detail({id:planoDetalleSet.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                                <span class="hidden-sm-down">Historial de cambios</span>
                             </button>
                         </div>
                     </td>
-                    
+
                 </tr>
             </tbody>
         </table>
     </div>
- 
+    <button type="submit"
+            ui-sref="{{ vm.previousState}}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
 
 </div>

@@ -83,7 +83,7 @@ public class ArchivoServiceImpl implements ArchivoService{
         tramiteHist.setOperador(operadorRepository.findByUsuario(user.get()));
         tramiteService.save(tramiteHist);
         
-        planoDetalleService.save(archivo.getTramite().getPlanoDetalle());
+        //planoDetalleService.save(archivo.getTramite().getPlanoDetalle());
         
         Archivo archivoHist = new Archivo();
         archivoHist.setId(null);
