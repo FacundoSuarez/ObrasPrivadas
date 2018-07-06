@@ -37,7 +37,7 @@ public class Tramite implements Serializable {
 
     @OneToMany(mappedBy = "tramite")
     @JsonIgnore
-   @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Archivo> archivos = new HashSet<>();
 
     @ManyToOne

@@ -1,6 +1,6 @@
 package municipalidad.obras.service;
 
-import municipalidad.dto.ArchivoDTO;
+import municipalidad.obras.service.dto.ArchivoDTO;
 import municipalidad.obras.domain.Archivo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

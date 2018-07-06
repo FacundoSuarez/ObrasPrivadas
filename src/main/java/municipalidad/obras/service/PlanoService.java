@@ -2,7 +2,7 @@ package municipalidad.obras.service;
 
 import java.util.List;
 
-import municipalidad.dto.PlanoDTO;
+import municipalidad.obras.service.dto.PlanoDTO;
 import municipalidad.obras.domain.Plano;
 
 /**

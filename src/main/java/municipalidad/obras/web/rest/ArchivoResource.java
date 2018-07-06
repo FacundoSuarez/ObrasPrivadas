@@ -21,7 +21,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import municipalidad.dto.ArchivoDTO;
+import municipalidad.obras.service.dto.ArchivoDTO;
 
 /**
  * REST controller for managing Archivo.

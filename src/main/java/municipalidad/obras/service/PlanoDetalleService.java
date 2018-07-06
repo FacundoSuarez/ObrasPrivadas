@@ -1,6 +1,6 @@
 package municipalidad.obras.service;
 
-import municipalidad.dto.PlanoDetalleDTO;
+import municipalidad.obras.service.dto.PlanoDetalleDTO;
 import municipalidad.obras.domain.PlanoDetalle;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,4 +40,14 @@ public interface PlanoDetalleService {
      * @param id the id of the entity
      */
     void delete(Long id);
+    
+    /**
+     * Get the "id" planoDetalleDTO.
+     *
+     * @param id the id of the entity
+     * @return the entity
+     */
+    PlanoDetalleDTO findOneDTO(Long id);
+    
+    
 }

@@ -2,21 +2,37 @@
 <div>
     <h2><span data-translate="obrasPrivadas4App.planoDetalle.detail.title">Plano Detalle</span> {{vm.planoDetalle.id}}</h2>
     <hr>
-    <jhi-alert-error></jhi-alert-error>
-    <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="obrasPrivadas4App.planoDetalle.estado">Estado</span></dt>
-        <dd>
-            <span data-translate="{{'obrasPrivadas4App.EstadoPlano.' + vm.planoDetalle.estado}}">{{vm.planoDetalle.estado}}</span>
-        </dd>
-        <dt><span data-translate="obrasPrivadas4App.planoDetalle.plano">Plano</span></dt>
-        <dd>
-            <a ui-sref="plano-detail({id:vm.planoDetalle.plano.id})">{{vm.planoDetalle.plano.id}}</a>
-        </dd>
-        <dt><span data-translate="obrasPrivadas4App.planoDetalle.tipoPlano">Tipo Plano</span></dt>
-        <dd>
-            <a ui-sref="tipo-plano-detail({id:vm.planoDetalle.tipoPlano.id})">{{vm.planoDetalle.tipoPlano.id}}</a>
-        </dd>
-    </dl>
+    
+    <h5><b>Tipo plano: </b><span>{{vm.planoDetalle.tipoPlano.descripcion}}</span></h5>
+    <h5><b>Estado: </b><span>{{vm.planoDetalle.estado}}</span></h5>
+    <h5><b>Revisado por: </b><span>{{vm.planoDetalle.tramitesDTO.archivos[0].operador}}</span></h5>
+    
+  
+   <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>Fecha de modificación</span></th>
+                    <th><span>Observaciones</span></th>
+                    <th><span>Revisado por</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="tramite in vm.planoDetalle.tramitesDTO">
+                    <td>{{tramite.fechaFin | date:'dd/MM/yyyy HH:mm'}}</td>
+                    <td>{{tramite.observaciones}}</td>
+                    <td class="text-right">
+                        
+                       <a ng-click="vm.openFile(tramite.archivos[0].archivoContentType, tramite.archivos[0].archivo)">
+                                <button type="button" class="btn btn-info">Abrir <span class="glyphicon glyphicon-file"></span></button>
+                            </a>    
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
    <button type="submit"
             ui-sref="plano-detail({id:vm.planoDetalle.plano.id})"

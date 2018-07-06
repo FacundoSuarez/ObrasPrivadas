@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codahale.metrics.annotation.Timed;
 
 import io.github.jhipster.web.util.ResponseUtil;
-import municipalidad.dto.PlanoDTO;
+import municipalidad.obras.service.dto.PlanoDTO;
 import municipalidad.obras.domain.Plano;
 import municipalidad.obras.service.PlanoService;
 import municipalidad.obras.web.rest.errors.BadRequestAlertException;

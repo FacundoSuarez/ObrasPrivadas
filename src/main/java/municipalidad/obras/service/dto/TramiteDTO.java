@@ -1,4 +1,4 @@
-package municipalidad.dto;
+package municipalidad.obras.service.dto;
 
 import java.time.ZonedDateTime;
 import java.util.HashSet;

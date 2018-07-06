@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import municipalidad.dto.TramiteDTO;
+import municipalidad.obras.service.dto.TramiteDTO;
 import municipalidad.obras.domain.User;
 import municipalidad.obras.repository.ArchivoRepository;
 import municipalidad.obras.service.UserService;

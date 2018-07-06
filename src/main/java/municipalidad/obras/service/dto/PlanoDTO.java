@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package municipalidad.dto;
+package municipalidad.obras.service.dto;
 
 import java.time.ZonedDateTime;
 import java.util.HashSet;

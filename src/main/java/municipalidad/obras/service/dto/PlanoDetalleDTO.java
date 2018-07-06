@@ -1,4 +1,4 @@
-package municipalidad.dto;
+package municipalidad.obras.service.dto;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,12 +27,29 @@ public class PlanoDetalleDTO {
     
     private PlanoDetalle planoDetalle;
     
-    
-    
-    
-    
-    
+    private Set<Archivo> archivos;
 
+    private Set<TramiteDTO> tramitesDTO;
+
+    
+    
+    
+    public Set<TramiteDTO> getTramitesDTO() {
+        return tramitesDTO;
+    }
+
+    public void setTramitesDTO(Set<TramiteDTO> tramitesDTO) {
+        this.tramitesDTO = tramitesDTO;
+    }
+    
+    public Set<Archivo> getArchivos() {
+        return archivos;
+    }
+
+    public void setArchivos(Set<Archivo> archivos) {
+        this.archivos = archivos;
+    }
+    
     public PlanoDetalle getPlanoDetalle() {
         return planoDetalle;
     }

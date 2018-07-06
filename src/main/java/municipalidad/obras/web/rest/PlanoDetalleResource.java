@@ -21,6 +21,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import municipalidad.obras.service.dto.PlanoDetalleDTO;
 
 /**
  * REST controller for managing PlanoDetalle.
@@ -104,10 +105,10 @@ public class PlanoDetalleResource {
      */
     @GetMapping("/plano-detalles/{id}")
     @Timed
-    public ResponseEntity<PlanoDetalle> getPlanoDetalle(@PathVariable Long id) {
+    public ResponseEntity<PlanoDetalleDTO> getPlanoDetalle(@PathVariable Long id) {
         log.debug("REST request to get PlanoDetalle : {}", id);
-        PlanoDetalle planoDetalle = planoDetalleService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(planoDetalle));
+        PlanoDetalleDTO planoDetalleDTO = planoDetalleService.findOneDTO(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(planoDetalleDTO));
     }
 
     /**

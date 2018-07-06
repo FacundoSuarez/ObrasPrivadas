@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Optional;
-import municipalidad.dto.TramiteDTO;
+import municipalidad.obras.service.dto.TramiteDTO;
 
 /**
  * REST controller for managing Tramite.

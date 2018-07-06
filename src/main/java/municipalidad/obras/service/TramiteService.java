@@ -2,7 +2,7 @@ package municipalidad.obras.service;
 
 import municipalidad.obras.domain.Tramite;
 import java.util.List;
-import municipalidad.dto.TramiteDTO;
+import municipalidad.obras.service.dto.TramiteDTO;
 
 /**
  * Service Interface for managing Tramite.
