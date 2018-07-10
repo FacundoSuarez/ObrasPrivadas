@@ -1,13 +1,13 @@
-(function() {
+(function () {
     'use strict';
 
     angular
-        .module('obrasPrivadas4App')
-        .controller('LoginController', LoginController);
+            .module('obrasPrivadas4App')
+            .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$rootScope', '$state', '$timeout', 'Auth', '$uibModalInstance'];
+    LoginController.$inject = ['$rootScope', '$state', '$timeout', 'Auth', '$uibModalInstance', 'Principal'];
 
-    function LoginController ($rootScope, $state, $timeout, Auth, $uibModalInstance) {
+    function LoginController($rootScope, $state, $timeout, Auth, $uibModalInstance, Principal) {
         var vm = this;
 
         vm.authenticationError = false;
@@ -20,9 +20,11 @@
         vm.requestResetPassword = requestResetPassword;
         vm.username = null;
 
-        $timeout(function (){angular.element('#username').focus();});
+        $timeout(function () {
+            angular.element('#username').focus();
+        });
 
-        function cancel () {
+        function cancel() {
             vm.credentials = {
                 username: null,
                 password: null,
@@ -32,7 +34,7 @@
             $uibModalInstance.dismiss('cancel');
         }
 
-        function login (event) {
+        function login(event) {
             event.preventDefault();
             Auth.login({
                 username: vm.username,
@@ -42,11 +44,30 @@
                 vm.authenticationError = false;
                 $uibModalInstance.close();
                 if ($state.current.name === 'register' || $state.current.name === 'activate' ||
-                    $state.current.name === 'finishReset' || $state.current.name === 'requestReset') {
+                        $state.current.name === 'finishReset' || $state.current.name === 'requestReset') {
                     $state.go('home');
                 }
 
                 $rootScope.$broadcast('authenticationSuccess');
+
+
+
+                Principal.identity().then(function (account) {
+                    vm.account = account;
+                    vm.isAuthenticated = Principal.isAuthenticated;
+                    console.log(account);
+                    console.log(account.authorities);
+                    for (var i = 0; i < account.authorities.length; i++) {
+                        if (account.authorities[i] === 'ROLE_PROFESIONAL') {
+                            $state.go('plano');
+                        } else if (account.authorities[i] === 'ROLE_OPERADOR') {    
+                            $state.go('archivo');
+                        } else {
+                            $state.go('home');
+                        }
+                        console.log(account.authorities[i]);
+                    }
+                });
 
                 // previousState was set in the authExpiredInterceptor before being redirected to login modal.
                 // since login is successful, go to stored previousState and clear previousState
@@ -60,12 +81,12 @@
             });
         }
 
-        function register () {
+        function register() {
             $uibModalInstance.dismiss('cancel');
             $state.go('register');
         }
 
-        function requestResetPassword () {
+        function requestResetPassword() {
             $uibModalInstance.dismiss('cancel');
             $state.go('requestReset');
         }
